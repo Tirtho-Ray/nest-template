@@ -1,0 +1,23 @@
+FROM node:22-alpine
+
+# Install openssl for Prisma compatibility
+RUN apk add --no-cache openssl
+
+WORKDIR /app
+
+RUN npm install -g pnpm
+
+COPY package.json pnpm-lock.yaml ./
+# Copy prisma directory to run generate
+COPY prisma ./prisma/
+
+RUN pnpm install
+
+# Generate Prisma Client
+RUN npx prisma generate
+
+COPY . .
+
+EXPOSE 9000
+
+CMD ["pnpm", "run", "start:dev"]
