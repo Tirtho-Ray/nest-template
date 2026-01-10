@@ -1,12 +1,10 @@
-name: Dev CI
+name: CI Check
 
 on:
-  push:
-    branches:
-      - dev
   pull_request:
     branches:
       - dev
+      - main
 
 jobs:
   check:
@@ -16,5 +14,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run check
-        run: echo "Code check passed"
+      - name: Basic check
+        run: echo "CI check passed"
