@@ -8,6 +8,6 @@ export class AuthController {
     @Get("user")
     getUser() {
         return this.service.login()
-        // change
+        // change this auth lamar
     }
 }
